@@ -10,6 +10,7 @@ networks:
 
 services:
 
+  # prometheusサーバー
   prometheus:
     image: prom/prometheus:v2.1.0
     volumes:
@@ -37,6 +38,7 @@ services:
 #        constraints:
 #          - node.hostname == ${HOSTNAME}
 
+  # ノード上に存在するexporter
   node-exporter:
     image: prom/node-exporter
     volumes:
@@ -56,6 +58,7 @@ services:
     deploy:
       mode: global
 
+  # アラートマネージャー
   alertmanager:
     image: prom/alertmanager
     ports:
@@ -72,6 +75,9 @@ services:
 #      placement:
 #        constraints:
 #          - node.hostname == ${HOSTNAME}
+
+  # コンテナメトリクス
+  # 参考 https://prometheus.io/docs/guides/cadvisor/
   cadvisor:
     image: google/cadvisor
     volumes:
