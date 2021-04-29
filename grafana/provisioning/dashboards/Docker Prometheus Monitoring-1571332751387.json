@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": 179,
   "graphTooltip": 1,
-  "iteration": 1619672329100,
+  "iteration": 1619672774367,
   "links": [],
   "panels": [
     {
@@ -1211,7 +1211,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_usage_seconds_total{image!=\"\"}[1m])) by (id,name)",
+          "exemplar": true,
+          "expr": "sum(rate(container_cpu_usage_seconds_total{}[1m])) by (id,name)",
           "format": "time_series",
           "interval": "10s",
           "intervalFactor": 1,
@@ -1321,7 +1322,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "container_memory_max_usage_bytes{image!=\"\"}",
+          "exemplar": true,
+          "expr": "container_memory_max_usage_bytes{}",
           "format": "time_series",
           "interval": "10s",
           "intervalFactor": 1,
@@ -1456,6 +1458,7 @@
         "x": 0,
         "y": 34
       },
+      "hiddenSeries": false,
       "id": 8,
       "isNew": true,
       "legend": {
@@ -1475,6 +1478,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
       "pluginVersion": "7.5.5",
       "pointradius": 5,
@@ -1486,7 +1492,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sort_desc(sum by (name) (rate(container_network_receive_bytes_total{image!=\"\"}[1m] ) ))",
+          "exemplar": true,
+          "expr": "sort_desc(sum by (name) (rate(container_network_receive_bytes_total{}[1m] ) ))",
           "interval": "10s",
           "intervalFactor": 1,
           "legendFormat": "{{ name }}",
@@ -1561,6 +1568,7 @@
         "x": 6,
         "y": 34
       },
+      "hiddenSeries": false,
       "id": 9,
       "isNew": true,
       "legend": {
@@ -1580,6 +1588,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
       "pluginVersion": "7.5.5",
       "pointradius": 5,
@@ -1591,8 +1602,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sort_desc(sum by (name) (rate(container_network_transmit_bytes_total{image!=\"\"}[1m] ) ))",
+          "exemplar": true,
+          "expr": "sort_desc(sum by (name) (rate(container_network_transmit_bytes_total{}[1m] ) ))",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{ name }}",
           "metric": "container_network_transmit_bytes_total",
@@ -1944,5 +1957,5 @@
   "timezone": "browser",
   "title": "Docker Prometheus Monitoring",
   "uid": "64nrElFmk",
-  "version": 3
+  "version": 4
 }
